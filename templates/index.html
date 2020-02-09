@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class="container">
+        <div class="col">
+            {% for i in ran %}
+                <div class="card my-2" style="width:auto;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ zz[i].title }}</h5>
+                        <h5> -{{ zz[i].userna }}</h5>
+                        <p class="card-text">{{ zz[i].data }}</p>
+                        <a href="#" class="btn btn-primary">read full blog</a>
+                    </div>
+                </div>
+            {% endfor %}</div>
+    </div>
+{% endblock %}
