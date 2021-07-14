@@ -39,11 +39,14 @@ def hello_world():
 @app.route('/login',methods=["POST","GET"])
 def login():
     session.pop('logged_in',None)
+    # print("Popped the sessions")
     if request.method=="POST":
         uname=request.form['uname']
         passw=request.form['passw']
         zz=user.query.filter_by(username=uname).first()
+        # print(zz.password)
         if zz.password==passw:
+            # print("Signing the user in")
             session['logged_in']=uname
             return redirect(url_for('createpost'))
     return render_template('login.html')
@@ -56,6 +59,7 @@ def signup():
         adding=user(username=uname,password=passw)
         db.session.add(adding)
         db.session.commit()
+        # print("User added")
     return render_template('signup.html')
 
 @app.route('/createpost',methods=["GET","POST"])
@@ -68,7 +72,7 @@ def createpost():
         db.session.commit()
     zz=posts.query.filter_by(userna=g.user).all()
     ran=range(len(zz))
-    print(zz)
+    # print(zz)
     return render_template('createpost.html',ran=ran,zz=zz)
 
 @app.before_request
